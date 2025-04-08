@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Test User",
+    "email": "test@example.com",
+    "address": "City",
+    "password": "1234",
+    "role": "user"
+  },
+  {
+    "name": "VIshwajeet Jaysingh Gaikwad",
+    "email": "vishwajeet9960001019@gmail.com",
+    "address": "asdasdsad",
+    "password": "1234",
+    "role": "user"
+  },
+  {
+    "name": "prachi",
+    "email": "prachi@gmail.com",
+    "address": "adasdsa",
+    "password": "1234",
+    "role": "owner"
+  }
+]

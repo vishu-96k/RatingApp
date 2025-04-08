@@ -1,0 +1,22 @@
+[
+  {
+    "storeName": "apple",
+    "rating": "4",
+    "userEmail": "vishwajeet9960001019@gmail.com"
+  },
+  {
+    "storeName": "banaana",
+    "rating": "3",
+    "userEmail": "vishwajeet9960001019@gmail.com"
+  },
+  {
+    "storeName": "apple",
+    "rating": "4",
+    "userEmail": "vishwajeet9960001019@gmail.com"
+  },
+  {
+    "storeName": "apple",
+    "rating": "3",
+    "userEmail": "vishwajeet9960001019@gmail.com"
+  }
+]
