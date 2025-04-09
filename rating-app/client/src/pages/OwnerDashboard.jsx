@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 function OwnerDashboard() {
   const [storeName, setStoreName] = useState("");
   const [stores, setStores] = useState([]);
+  const ownerEmail = localStorage.getItem("email");
+  const ownerN = localStorage.getItem("name");
+
 
   const fetchStores = () => {
     fetch("http://localhost:5000/api/stores")
@@ -36,26 +39,44 @@ function OwnerDashboard() {
   };
 
   return (
-    <div>
-      <h2>Store Owner Dashboard</h2>
-      <button onClick={handleLogout}>Logout</button>
+    <div className="container mt-5">
+    <div className="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h2>Store Owner Dashboard</h2>
+        <p className="text-muted">Welcome, <strong>{ownerEmail}</strong></p>
+      </div>
+      <button className="btn btn-danger" onClick={handleLogout}>
+        Logout
+      </button>
+    </div>
 
-      <div style={{ marginTop: "20px" }}>
+    <div className="card p-4 shadow mb-4">
+      <h5>Add a New Store</h5>
+      <div className="input-group">
         <input
+          type="text"
+          className="form-control"
+          placeholder="Enter store name"
           value={storeName}
           onChange={(e) => setStoreName(e.target.value)}
-          placeholder="Store Name"
         />
-        <button onClick={handleAddStore}>Add Store</button>
+        <button className="btn btn-primary" onClick={handleAddStore}>
+          Add Store
+        </button>
       </div>
+    </div>
 
-      <h3>Your Stores:</h3>
-      <ul>
+    <div className="card p-4 shadow">
+      <h5>Your Stores</h5>
+      <ul className="list-group">
         {stores.map((store, i) => (
-          <li key={i}>{store.name}</li>
+          <li key={i} className="list-group-item">
+            {store.name}
+          </li>
         ))}
       </ul>
     </div>
+  </div>
   );
 }
 

@@ -19,5 +19,12 @@
     "address": "adasdsa",
     "password": "1234",
     "role": "owner"
+  },
+  {
+    "name": "sankalp",
+    "email": "sankalp@gmail.com",
+    "address": "asdasdasd",
+    "password": "1234",
+    "role": "owner"
   }
 ]

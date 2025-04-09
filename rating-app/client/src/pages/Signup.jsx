@@ -33,20 +33,73 @@ function Signup() {
   };
 
   return (
-    <div>
-      <h2>Signup</h2>
-      <form onSubmit={handleSubmit}>
-        <input name="name" placeholder="Name" onChange={handleChange} required />
-        <input name="email" type="email" placeholder="Email" onChange={handleChange} required />
-        <input name="address" placeholder="Address" onChange={handleChange} required />
-        <input name="password" type="password" placeholder="Password" onChange={handleChange} required />
-        <select name="role" onChange={handleChange}>
+    <div className="container mt-5" style={{ maxWidth: "500px" }}>
+    <h2 className="text-center mb-4">Signup</h2>
+    <form className="p-4 border rounded shadow bg-white" onSubmit={handleSubmit}>
+      <div className="mb-3">
+        <label className="form-label">Name</label>
+        <input
+          name="name"
+          className="form-control"
+          placeholder="Enter your name"
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label">Email</label>
+        <input
+          name="email"
+          type="email"
+          className="form-control"
+          placeholder="Enter your email"
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label">Address</label>
+        <input
+          name="address"
+          className="form-control"
+          placeholder="Enter your address"
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label">Password</label>
+        <input
+          name="password"
+          type="password"
+          className="form-control"
+          placeholder="Enter your password"
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="mb-4">
+        <label className="form-label">Role</label>
+        <select
+          name="role"
+          className="form-select"
+          onChange={handleChange}
+          value={form.role}
+        >
           <option value="user">Normal User</option>
           <option value="owner">Store Owner</option>
         </select>
-        <button type="submit">Signup</button>
-      </form>
-    </div>
+      </div>
+
+      <button type="submit" className="btn btn-success w-100">
+        Signup
+      </button>
+    </form>
+  </div>
   );
 }
 

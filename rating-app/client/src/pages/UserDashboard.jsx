@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 function UserDashboard() {
   const [stores, setStores] = useState([]);
   const [ratings, setRatings] = useState({});
+  const ownerEmail = localStorage.getItem("email");
+  // const userName = localStorage.getItem("name"); 
 
   useEffect(() => {
     fetch("http://localhost:5000/api/stores")
@@ -38,25 +40,41 @@ function UserDashboard() {
   };
 
   return (
-    <div>
-      <h2>User Dashboard</h2>
-      <button onClick={handleLogout}>Logout</button>
-      {stores.map((store, index) => (
-        <div key={index} style={{ marginBottom: "10px" }}>
-          <strong>{store.name}</strong>
-          <div>
-            <input
-              type="number"
-              min="1"
-              max="5"
-              value={ratings[store.name] || ""}
-              onChange={(e) => handleRatingChange(store.name, e.target.value)}
-              placeholder="Rate 1–5"
-            />
-            <button onClick={() => submitRating(store.name)}>Submit</button>
-          </div>
+    <div className="container mt-5">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h2>User Dashboard</h2>
+          <p className="text-muted">Welcome, <strong>{ownerEmail}</strong></p>
         </div>
-      ))}
+        <button className="btn btn-danger" onClick={handleLogout}>
+          Logout
+        </button>
+      </div>
+
+      <div className="row">
+        {stores.map((store, index) => (
+          <div key={index} className="col-md-4 mb-4">
+            <div className="card shadow-sm p-3">
+              <h5>{store.name}</h5>
+              <input
+                type="number"
+                min="1"
+                max="5"
+                className="form-control my-2"
+                value={ratings[store.name] || ""}
+                onChange={(e) => handleRatingChange(store.name, e.target.value)}
+                placeholder="Rate 1–5"
+              />
+              <button
+                className="btn btn-primary w-100"
+                onClick={() => submitRating(store.name)}
+              >
+                Submit Rating
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
