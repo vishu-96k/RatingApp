@@ -12,6 +12,7 @@ function OwnerDashboard() {
       .then((res) => res.json())
       .then((data) => {
         // Filter stores owned by the current owner (optional)
+        const ownerStores = data.filter((store) => store.owner === ownerEmail);
         setStores(data);
       });
   };
@@ -21,16 +22,33 @@ function OwnerDashboard() {
   }, []);
 
   const handleAddStore = async () => {
+    if (!storeName) return alert("Store name cannot be empty.");
+  
     const res = await fetch("http://localhost:5000/api/stores", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: storeName }),
+      body: JSON.stringify({ name: storeName, owner: ownerEmail }),
     });
+  
 
     const data = await res.json();
     alert(data.message || "Store added!");
     setStoreName("");
     fetchStores(); // Refresh the list
+  };
+
+  const handleDeleteStore = async (name) => {
+    if (!window.confirm(`Are you sure you want to delete store: ${name}?`)) return;
+  
+    const res = await fetch("http://localhost:5000/api/stores/delete", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name}),
+    });
+  
+    const data = await res.json();
+    alert(data.message);
+    fetchStores();
   };
 
   const handleLogout = () => {
@@ -69,12 +87,15 @@ function OwnerDashboard() {
     <div className="card p-4 shadow">
       <h5>Your Stores</h5>
       <ul className="list-group">
-        {stores.map((store, i) => (
-          <li key={i} className="list-group-item">
-            {store.name}
-          </li>
-        ))}
-      </ul>
+  {stores.map((store, i) => (
+    <li key={i} className="list-group-item d-flex justify-content-between align-items-center">
+      {store.name}
+      <button className="btn btn-outline-danger btn-sm" onClick={() => handleDeleteStore(store.name)}>
+        🗑️ Delete
+      </button>
+    </li>
+  ))}
+</ul>
     </div>
   </div>
   );

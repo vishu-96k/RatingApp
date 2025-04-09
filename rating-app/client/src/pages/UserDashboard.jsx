@@ -39,6 +39,36 @@ function UserDashboard() {
     window.location.href = "/login";
   };
 
+  //star rating fun
+  function StarRating({ rating, onRate }) {
+    const [hovered, setHovered] = useState(0);
+  
+    return (
+      <div>
+        {[1, 2, 3, 4, 5].map((star) => (
+          <span
+            key={star}
+            style={{
+              cursor: "pointer",
+              color:
+                star <= (hovered || rating)
+                  ? "#FFD700" // Yellow if hovered or selected
+                  : "#ccc",  // Grey otherwise
+              fontSize: "24px",
+              marginRight: "5px",
+              transition: "color 0.2s",
+            }}
+            onClick={() => onRate(star)}
+            onMouseEnter={() => setHovered(star)}
+            onMouseLeave={() => setHovered(0)}
+          >
+            ★
+          </span>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <div className="container mt-5">
       <div className="d-flex justify-content-between align-items-center mb-4">
@@ -56,21 +86,16 @@ function UserDashboard() {
           <div key={index} className="col-md-4 mb-4">
             <div className="card shadow-sm p-3">
               <h5>{store.name}</h5>
-              <input
-                type="number"
-                min="1"
-                max="5"
-                className="form-control my-2"
-                value={ratings[store.name] || ""}
-                onChange={(e) => handleRatingChange(store.name, e.target.value)}
-                placeholder="Rate 1–5"
-              />
-              <button
-                className="btn btn-primary w-100"
-                onClick={() => submitRating(store.name)}
-              >
-                Submit Rating
-              </button>
+              <StarRating
+  rating={parseInt(ratings[store.name]) || 0}
+  onRate={(value) => handleRatingChange(store.name, value)}
+/>
+<button
+  className="btn btn-primary w-100 mt-2"
+  onClick={() => submitRating(store.name)}
+>
+  Submit Rating
+</button>
             </div>
           </div>
         ))}

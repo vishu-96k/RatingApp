@@ -61,4 +61,23 @@ router.post("/rate", (req, res) => {
   res.json({ message: "Rating submitted!" });
 });
 
+//delete store
+router.delete("/delete", (req, res) => {
+  const { name } = req.body;
+  if (!name) {
+    return res.status(400).json({ message: "Missing store name" });
+  }
+
+  let stores = loadStores();
+  const originalLength = stores.length;
+  stores = stores.filter((s) => s.name !== name); // Only checking the name
+
+  if (stores.length === originalLength) {
+    return res.status(404).json({ message: "Store not found" });
+  }
+
+  saveStores(stores);
+  res.json({ message: "Store deleted successfully" });
+});
+
 module.exports = router;

@@ -18,5 +18,20 @@
     "storeName": "apple",
     "rating": "3",
     "userEmail": "vishwajeet9960001019@gmail.com"
+  },
+  {
+    "storeName": "apple",
+    "rating": "3",
+    "userEmail": "vishwajeet9960001019@gmail.com"
+  },
+  {
+    "storeName": "apple",
+    "rating": 4,
+    "userEmail": "vishwajeet9960001019@gmail.com"
+  },
+  {
+    "storeName": "dasdas",
+    "rating": 5,
+    "userEmail": "vishwajeet9960001019@gmail.com"
   }
 ]
